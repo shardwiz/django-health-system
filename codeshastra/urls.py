@@ -15,5 +15,8 @@ urlpatterns = [
     url(r'^SearchDoctorByHospitalName/$', views.SearchDoctorByHospitalName),
     url(r'^EmergencyDoctorSearch/$', views.EmergencyDoctorSearch),
     url(r'^CreateNewVidChatRoom/$', views.CreateNewVidChatRoom),
+    url(r'^DoctorRegister/$', views.DoctorRegister),
+    url(r'^DoctorLogin/$', views.DoctorLogin),
+    url(r'^DoctorLanding/$', views.DoctorLanding),
 ]
 ##https://docs.google.com/spreadsheets/d/17h_0u0yPnQ5wdWeGVkIJYXaPxgbqdSo_zsoB_OzR9Oc/edit?usp=sharing
