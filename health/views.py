@@ -204,7 +204,7 @@ def DoctorRegister(request):
         doctor.save()
         return redirect('./DoctorLogin')
     else:
-        return render('./register.html')
+        return render('./Dregister.html')
 
 def DoctorLogin(request):
     if request.method == POST:
@@ -214,8 +214,166 @@ def DoctorLogin(request):
         if doctor.count() == 0:
             return HttpResponse("Username does not exist")
         if password == doctor.password:
+            request.session['doctor'] = doctor
             return redirect('./DoctorLanding')
         else:
             return HttpResponse("Invalid Password")
     else:
         return render('./login.html')
+
+def DoctorAddRecord(request):
+    if request.method == POST:
+        aadhaarid = request.POST.get('aadhaarid')
+        patient = Patients.objects.get(aadhaarid=aadhaarid)
+        symptoms = request.POST.get('symptoms')
+        diagnosis = request.POST.get('diagnosis')
+        addedby = request.POST.get('addedby')
+        attatchmentlink = request.POST.get('attatchmentlink')
+        createdat = request.POST.get('createdat')
+        createdon = request.POST.get('createdon')
+        patientRecord = Patientrecords()
+        patientRecord.patient = patient
+        patientRecord.symptoms = symptoms
+        patientRecord.diagnosis = diagnosis
+        patientRecord.addedby = Doctors.objects.get(id=addedby)
+        patientRecord.attatchmentlink = attatchmentlink
+        patientRecord.createdat = createdat
+        patientRecord.createdon = createdon
+        patientRecord.save()
+        return render('./AddNewRecord.html')
+    else:
+        return render('./AddNewRecord.html')
+
+def PharmacyRegister(request):
+    if request.method == POST:
+        name = request.POST.get('name')
+        username = request.POST.get('username')
+        pharmacyCount = Pharmacies.objects.filter(username=username).count()
+        if pharmacyCount != 0:
+            return HttpResponse('Pharmacy Name already taken')
+        password = request.POST.get('password')
+        address = request.POST.get('address')
+        timing = request.POST.get('timing')
+        location = request.POST.get('location')
+        pharmacy = Pharmacies()
+        pharmacy.name = name
+        pharmacy.username = username
+        pharmacy.password = password
+        pharmacy.address = address
+        pharmacy.timing = timing
+        pharmacy.location = location
+        pharmacy.save()
+        return redirect('./PharmacyLogin')
+    else:
+        return render('./Pregister.html')
+
+def PharmacyLogin(request):
+    if request.method == POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        pharmacy = Pharmacies.objects.get(username=username)
+        if pharmacy.count() == 0:
+            return HttpResponse("Username does not exist")
+        if password == pharmacy.password:
+            request.session['pharmacy'] = pharmacy
+            return redirect('./PharmacyLanding')
+        else:
+            return HttpResponse("Invalid Password")
+    else:
+        return render('./login.html')
+
+def PharmacyAddMedicine(request):
+    if request.method == POST:
+        pharmacy = request.session['pharmacy']
+        medicinename = request.POST.get('medicinename')
+        medicineCount = Medicines.objects.filter(name=medicine).count()
+        if medicineCount == 0:
+            medicine = Medicines()
+            medicine.name = medicinename
+            medicine.save()
+        quantity = request.POST.get('quantity')
+        if (Medicinestocks.objects.filter(medicine=Medicines.objects.get(name=medicinename),pharmacy=pharmacy).count()==0):
+            medicinestocks = Medicinestocks()
+            medicinestocks.pharmacy = pharmacy
+            medicinestocks.medicine = Medicines.objects.get(name=medicinename)
+            medicinestocks.quantity = quantity
+            medicinestocks.save()
+        else
+            oldQuantity = Medicinestocks.objects.filter(medicine=Medicines.objects.get(name=medicinename),pharmacy=pharmacy).quantity
+            newQuantity = str( int(oldQuantity) + int(quantity) )
+            if (newQuantity < 0):
+                return HttpResponse("Invalid medicine update")
+            else:
+                Medicinestocks.objects.filter(medicine=Medicines.objects.get(name=medicinename),pharmacy=pharmacy).update(quantity=newQuantity)
+        return render('./add.html')
+    else:
+        return render('./add.html')
+
+def HospitalRegister(request):
+    if request.method == POST:
+        name = request.POST.get('name')
+        name = request.POST.get('location')
+        name = request.POST.get('address')
+        username = request.POST.get('username')
+        hospitalCount = Hospitals.objects.filter(username=username).count()
+        if doctorCount != 0:
+            return HttpResponse('username already taken')
+        password = request.POST.get('password')
+        hospital = Hospitals()
+        hospital.name = name
+        hospital.username = username
+        hospital.password = password
+        hospital.location = location
+        hospital.address = address
+        hospital.save()
+        return redirect('./HospitalLogin')
+    else:
+        return render('./Hregister.html')
+
+def HospitalLogin(request):
+    if request.method == POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        hospital = Hospitals.objects.get(username=username)
+        if hospital.count() == 0:
+            return HttpResponse("Username does not exist")
+        if password == hospital.password:
+            request.session['hospital'] = hospital
+            return redirect('./HospitalLanding')
+        else:
+            return HttpResponse("Invalid Password")
+    else:
+        return render('./login.html')
+
+def HospitalAddEquipment(request):
+    if request.method == POST:
+        hopital = request.session['hospital']
+        equipmentname = request.POST.get('equipmentname')
+        equipmentCount = Equipments.objects.filter(name=equipmentname).count()
+        if equipmentCount == 0:
+            equipment = Equipments()
+            equipment.name = equipmentname
+            equipment.save()
+        available = request.POST.get('available')
+        if (Equipmentsavailable.objects.filter(equipment=Equipments.objects.get(name=equipmentname),hospital=hospital).count()==0):
+            equipmentsavailable = Equipmentsavailable()
+            equipmentsavailable.hospital = hospital
+            equipmentsavailable.equipment = Equipments.objects.get(name=equipmentname)
+            equipmentsavailable.available = available
+            equipmentsavailable.save()
+        else
+            Medicinestocks.objects.filter(equipment=Equipments.objects.get(name=medicinename),hospital=hospital).update(available=available)
+        return render('./add.html')
+    else:
+        return render('./add.html')
+
+
+'''
+Doctor: videocall requests list
+
+Pharmacy: generate invoices
+
+Hospitals: qr code recognizer(plugin if poss) 
+
+API: new api to fetch the pharmacy for a particular medicine.
+'''

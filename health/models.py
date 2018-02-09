@@ -24,7 +24,7 @@ class Doctors(models.Model):
 
 
 class Equipments(models.Model):
-    name = models.IntegerField()
+    name = models.CharField(max_length=100)
 
     class Meta:
         managed = False
@@ -55,11 +55,11 @@ class Hospitals(models.Model):
 
 class Medicines(models.Model):
     name = models.CharField(max_length=50)
+    amount = models.CharField(max_length=50)
 
     class Meta:
         managed = False
         db_table = 'medicines'
-
 
 class Medicinestocks(models.Model):
     medicine = models.ForeignKey(Medicines, models.DO_NOTHING, db_column='medicine')
@@ -102,7 +102,7 @@ class Pharmacies(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     address = models.CharField(max_length=500)
-    name = models.IntegerField()
+    name = models.CharField(max_length=500)
     timing = models.CharField(max_length=100)
     location = models.CharField(max_length=500)
 
