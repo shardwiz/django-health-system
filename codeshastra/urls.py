@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^EmergencyDoctorSearch/$', views.EmergencyDoctorSearch),
     url(r'^CreateNewVidChatRoom/$', views.CreateNewVidChatRoom),
     url(r'^DoctorRegister/$', views.DoctorRegister),
+    url(r'^DoctorL/$', views.DoctorRegister),
+    url(r'^DoctorRegister/$', views.DoctorRegister),
     url(r'^DoctorLogin/$', views.DoctorLogin),
     url(r'^DoctorLanding/$', views.DoctorLanding),
 ]

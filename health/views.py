@@ -187,29 +187,35 @@ def EmergencyDoctorSearch(request):
     return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
 
 def DoctorRegister(request):
-    name = request.POST.get('name')
-    username = request.POST.get('username')
-    doctorCount = Doctors.objects.filter(username=username).count()
-    if doctorCount != 0:
-        return HttpResponse('username already taken')
-    password = request.POST.get('password')
-    speciality = request.POST.get('speciality')
-    doctor = Doctors()
-    doctor.name = name
-    doctor.username = username
-    doctor.password = password
-    if speciality is not None:
-        doctor.speciality = speciality
-    doctor.save()
-    return redirect('./DoctorLogin')
+    if request.method == POST:
+        name = request.POST.get('name')
+        username = request.POST.get('username')
+        doctorCount = Doctors.objects.filter(username=username).count()
+        if doctorCount != 0:
+            return HttpResponse('username already taken')
+        password = request.POST.get('password')
+        speciality = request.POST.get('speciality')
+        doctor = Doctors()
+        doctor.name = name
+        doctor.username = username
+        doctor.password = password
+        if speciality is not None:
+            doctor.speciality = speciality
+        doctor.save()
+        return redirect('./DoctorLogin')
+    else:
+        return render('./register.html')
 
 def DoctorLogin(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    doctor = Doctors.objects.get(username=username)
-    if doctor.count() == 0:
-        return HttpResponse("Username does not exist")
-    if password == doctor.password:
-        return redirect('./DoctorLanding')
+    if request.method == POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        doctor = Doctors.objects.get(username=username)
+        if doctor.count() == 0:
+            return HttpResponse("Username does not exist")
+        if password == doctor.password:
+            return redirect('./DoctorLanding')
+        else:
+            return HttpResponse("Invalid Password")
     else:
-        return HttpResponse("Invalid Password")
+        return render('./login.html')
