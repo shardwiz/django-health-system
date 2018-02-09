@@ -143,7 +143,7 @@ def SearchDoctorBySpeciality(request):
         response_array['data'].append(doctorObj)
     return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
 
-##TODO: add ForeignKey relation in db for currentlocation and hospital-> id
+
 @csrf_exempt
 def SearchDoctorByHospitalName(request):
     currentlocation = request.GET.get('currenthospital')

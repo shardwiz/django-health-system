@@ -14,7 +14,7 @@ class Doctors(models.Model):
     available = models.CharField(max_length=1)
     name = models.CharField(max_length=100)
     speciality = models.CharField(max_length=500)
-    currentlocation = models.ForeignKey('Hospitals', models.DO_NOTHING, db_column='currentlocation')
+    currentlocation = models.ForeignKey('Hospitals', models.DO_NOTHING, db_column='currentlocation', blank=True, null=True)
     password = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
 
