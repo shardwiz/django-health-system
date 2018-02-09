@@ -43,20 +43,18 @@ def FetchPatientDetails(request):
     response_array['data']['contact'] = patient.contact
     return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
 
-##TODO:TEST
 @csrf_exempt
 def GetAllPatientRecords(request):
     aadhaarid = request.GET.get('aadhaarid')
-    patientRecord = Patientrecords.objects.values().get(patient=Patients.objects.get(aadhaarid=aadhaarid))
-
+    patientRecords = Patientrecords.objects.filter(patient=Patients.objects.get(aadhaarid=aadhaarid))
     response_array = {}
     response_array['status'] = 1
     response_array['data'] = []
-    for patientRecord in patientRecord:
+    for patientRecord in patientRecords:
         patientRecordObj = {}
         patientRecordObj['symptoms'] = patientRecord.symptoms
         patientRecordObj['diagnosis'] = patientRecord.diagnosis
-        patientRecordObj['addedby'] = patientRecord.addedby
+        patientRecordObj['addedby'] = patientRecord.addedby.name
         patientRecordObj['attatchmentlink'] = patientRecord.attatchmentlink
         patientRecordObj['createdat'] = patientRecord.createdat
         patientRecordObj['createdon'] = patientRecord.createdon
@@ -90,17 +88,14 @@ def CreateNewPatientRecord(request):
     response_array['data'] = 'success'
     return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
 
-##TODO : add closedAt flag into db ???
 ##TODO : TEST
 @csrf_exempt
 def CreateNewVidChatRoom(request):
     aadhaarid = request.POST.get('aadhaarid')
     patient = Patients.objects.get(aadhaarid=aadhaarid)
     createdat = request.POST.get('createdat')
-    #doctor = Doctors.objects.get( = )
     videorecords = Videorecords()
     videorecords.patient = patient
-    #videorecords.doctor = doctor
     videorecords.createdat = createdat
     videorecords.save()
 
@@ -112,7 +107,7 @@ def CreateNewVidChatRoom(request):
 @csrf_exempt
 def SearchDoctor(request):
     name = request.GET.get('name')
-    doctor = Doctors.objects.values().get(name=name)
+    doctor = Doctors.objects.filter(name__contains=name)
 
     response_array = {}
     response_array['status'] = 1
@@ -129,7 +124,7 @@ def SearchDoctor(request):
 @csrf_exempt
 def SearchDoctorBySpeciality(request):
     speciality = request.GET.get('speciality')
-    doctor = Doctors.objects.get(speciality=speciality)
+    doctor = Doctors.objects.filter(speciality__contains=speciality)
 
     response_array = {}
     response_array['status'] = 1
@@ -142,12 +137,11 @@ def SearchDoctorBySpeciality(request):
         doctorObj['currentlocation'] = doctor.currentlocation
         response_array['data'].append(doctorObj)
     return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
-
 
 @csrf_exempt
 def SearchDoctorByHospitalName(request):
-    currentlocation = request.GET.get('currenthospital')
-    doctor = Doctors.objects.values().get(currentlocation=Hospitals.objects.get(name=currentlocation))
+    currentlocation = request.GET.get('hospital')
+    doctor = Doctors.objects.filter(currentlocation=Hospitals.objects.get(name__contains=currentlocation))
 
     response_array = {}
     response_array['status'] = 1
@@ -157,10 +151,11 @@ def SearchDoctorByHospitalName(request):
         doctorObj['available'] = doctor.available
         doctorObj['name'] = doctor.name
         doctorObj['speciality'] = doctor.speciality
-        doctorObj['currentlocation'] = doctor.currentlocation
+        doctorObj['currentlocation'] = doctor.currentlocation.name
         response_array['data'].append(doctorObj)
     return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
 
+##TODO test
 @csrf_exempt
 def EmergencyDoctorSearch(request):
     latitude = request.GET.get('latitude')
@@ -176,7 +171,7 @@ def EmergencyDoctorSearch(request):
         longitudeDb = location.split(',')[1]
         sqDist = ((latitudeDb - latitude)**2 +(longitudeDb - longitude)**2)
         hospitalDistDict[hospital.name] = sqDist
-    sorted_hospitals = sorted(hospitalDistDict.items(), key=operator.itemgetter(1))
+    sorted_hospitals = sorted(hospitalDistDict.items(), key=operator.itemgetter(1))[::-1]
 
     response_array = {}
     response_array['status'] = 1

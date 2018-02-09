@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^SearchDoctorBySpeciality/$', views.SearchDoctorBySpeciality),
     url(r'^SearchDoctorByHospitalName/$', views.SearchDoctorByHospitalName),
     url(r'^EmergencyDoctorSearch/$', views.EmergencyDoctorSearch),
+    url(r'^CreateNewVidChatRoom/$', views.CreateNewVidChatRoom),
 ]
+##https://docs.google.com/spreadsheets/d/17h_0u0yPnQ5wdWeGVkIJYXaPxgbqdSo_zsoB_OzR9Oc/edit?usp=sharing
