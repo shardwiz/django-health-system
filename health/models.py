@@ -13,8 +13,8 @@ from django.db import models
 class Doctors(models.Model):
     available = models.CharField(max_length=1)
     name = models.CharField(max_length=100)
-    speciality = models.CharField(max_length=500, blank=True, null=True)
-    currentlocation = models.ForeignKey('Hospitals', models.DO_NOTHING, db_column='currentlocation', blank=True, null=True)
+    speciality = models.CharField(max_length=500)
+    currentlocation = models.IntegerField()
     password = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
 
@@ -24,7 +24,7 @@ class Doctors(models.Model):
 
 
 class Equipments(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.IntegerField()
 
     class Meta:
         managed = False
@@ -55,11 +55,11 @@ class Hospitals(models.Model):
 
 class Medicines(models.Model):
     name = models.CharField(max_length=50)
-    amount = models.CharField(max_length=50)
 
     class Meta:
         managed = False
         db_table = 'medicines'
+
 
 class Medicinestocks(models.Model):
     medicine = models.ForeignKey(Medicines, models.DO_NOTHING, db_column='medicine')
@@ -102,7 +102,7 @@ class Pharmacies(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     address = models.CharField(max_length=500)
-    name = models.CharField(max_length=500)
+    name = models.IntegerField()
     timing = models.CharField(max_length=100)
     location = models.CharField(max_length=500)
 

@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}  <!-- Datatables -->
+    <link href="{% static "vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}"  rel="stylesheet">
+{% endblock %}
+ {% block content %}
+           <div class="">
+                  <div class="page-title">
+                     <div class="title_left">
+                        <h3>Available Equipments</h3>
+                     </div>
+
+                     <div class="title_right">
+                        <div class="form-group pull-right">
+                           <div class="input-group">
+                              <button class="btn btn-default" type="button" id="Getinvoice">Get Invoice</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="row">
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                           <div class="x_title">
+                              <h2>Select Equipments</small></h2>
+                              <ul class="nav navbar-right panel_toolbox">
+                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                 </li>
+                              </ul>
+                              <div class="clearfix"></div>
+                           </div>
+                           <div class="x_content">
+                              <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                              <thead>
+                                 <tr>
+                                  <th>Equipment Id</th>
+                                    <th>
+                                    <input type="checkbox" id="check-all" class="flat">Select All
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Available Quantity</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    </tr>
+                              </thead>
+                              <tbody> 
+                               <tr class="fir">
+                                    <th><input type="checkbox" class="flat CheckBox"></th>
+                                    <td>Tiger Nixon</td>
+                                    <td>61</td>
+                                    <th><input type="number" class="flat"></th>
+                                    <td>320,800</td>
+                                 </tr> 
+                              </tbody>
+                             </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+    {% endblock %}
+  
+        <!-- /page content -->
+ {% block js %}
+
+    <!-- Datatables -->
+    <script src="{% static "vendors/datatables.net/js/jquery.dataTables.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.flash.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.html5.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.print.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}" ></script>
+    <script src="{% static "vendors/jszip/dist/jszip.min.js" %}" ></script>
+    <script src="{% static "vendors/pdfmake/build/pdfmake.min.js" %}" ></script>
+    <script src="{% static "vendors/pdfmake/build/vfs_fonts.js" %}" ></script>
+
+    <script type="text/javascript">
+    // Script To populate the table
+
+    // Script To populate the table
+       var quan = [];
+  var data = {};
+  //todo: MIT remove the object and replace with your context of all Equipments with same params as below
+  /* {"0": ["Tiger Nixon","61","320,800"],"1": ["Tiger Nixon","61","320,800"]} 
+
+  JSON FORMAT
+
+    {"row_number":["Equipment_id", "Equipment name", "Quantity The is Available", "Price"]}
+  */
+
+  data.d = [{
+    Equipment_id : '1',
+    Name: 'Beaner',
+    AvailableQuantity: '20',
+    Price: '231'
+  }, {
+    Equipment_id: '2',
+    Name: 'Martin',
+    AvailableQuantity: '45',
+    Price: '231'
+  }];
+
+  $('#datatable-checkbox tr').not(':first').not(':last').remove();
+  var html = '';
+  for (var i = 0; i < data.d.length; i++) {
+   
+          html += ' <tr><td>' + data.d[i].Equipment_id + '</td><td></th><input type="checkbox" class="flat CheckBox"></th></td><td>' + data.d[i].Name + '</td><td>' + data.d[i].AvailableQuantity + '</td><td id='+i+'><input type="number" class="QuantityTobuy"></td>' + '</td><td>' + data.d[i].Price + '</td></tr>';
+  }
+  $('#datatable-checkbox tr').first().after(html);
+  $(function() {
+    $("#check-all").click(function() {
+      $(".CheckBox").prop('checked', $(this).prop('checked'));
+      $(".CheckBox").closest("tr").addClass("SelectedRow");
+    });
+  });
+
+  $(".CheckBox").click(function() {
+    $(this).closest("tr").addClass("SelectedRow");
+  });
+
+  $(function() {
+    $("#Getinvoice").click(function() {
+      var row = "";
+      $("#datatable-checkbox tr.SelectedRow").each(function(i) {
+        var data = $(this).html()
+        data = data.replace('<input type=\"number\" class=\"QuantityTobuy\">',quan[i]);
+        alert("DATA " + data)
+        row += "<tr>" + data.replace("<td><input type=\"checkbox\" class=\"flat CheckBox\"></td>","") + "</tr>";
+        localStorage.setItem('TableData', row);
+      });
+
+
+      /* var rows = row.replace(/(\r\n|\n|\r)/gm, "") */
+      /* var rows = row.replace('<td><input type="checkbox" class="flat CheckBox"></td>',""); */
+      html2json();
+      alert(row) 
+    });
+  });
+
+  function html2json() {
+    var json = '{';
+    var otArr = [];
+    var tbl2 = $("#datatable-checkbox tr.SelectedRow").each(function(i) {
+      x = $(this).children();
+      var itArr = [];
+      x.each(function() {
+      if($(this).text()!= "")
+        {itArr.push('"' + $(this).text() + '"');
+   }
+  else{
+      itArr.push('"' +  quan[$(this).attr('id')] + '"');
+  }
+      });
+
+      itArr.shift();
+         
+      otArr.push('"' + i + '": [' + itArr.join(',') + ']');
+
+    })
+    json += otArr.join(",") + '}'
+      
+    ;
+  }
+  $(".QuantityTobuy").focusout(function () {
+         amt = $(this).val();
+         quan[$(this).parent().attr('id')] = amt;
+         // console.log(quan);
+      });
+   
+        $("tbody tr.fir").hide();  
+          </script>
+  {% endblock %}
