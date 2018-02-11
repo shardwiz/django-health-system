@@ -1,0 +1,235 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+
+{% block css %}  <!-- Datatables -->
+    <link href="{% static "vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}"  rel="stylesheet">
+    <style>
+      .fa-hover{
+        /* border: 2px solid #f5f5f5;
+        display: inline-block;
+        position: fixed;
+        padding: 6px 15px;
+        border-radius: 50%;
+        background-color: #Ffe;
+        box-shadow: 0px 1px 1px #476e96;
+        bottom: 60px;
+        right: 35px;
+        z-index: 1000; */
+        border: 1px solid #53779c;
+        display: inline-block;
+        position: fixed;
+        padding: 6px 15px;
+        border-radius: 50%;
+        background-color: #476e96;
+        box-shadow: 0px 1px 1px #2c5075;
+        bottom: 60px;
+        right: 35px;
+        z-index: 1000;
+      }
+      .fa-hover:hover{
+            background-color: #213a54;
+            box-shadow: 0px 1px 1px #53779c;
+      }
+      .fa-microphone{
+        color: white;
+      }
+
+    </style>
+{% endblock %}
+ {% block content %}
+        <body onload="guide()">
+           <div class="">
+                  <div class="page-title">
+                     <div class="title_left">
+                        <h3>Available Equipments</h3>
+                     </div>
+
+                     <div class="title_right">
+                        <div class="form-group pull-right">
+                           <div class="input-group">
+                              <button class="btn btn-default" type="button" id="Getinvoice">Get Invoice</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="row">
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                           <div class="x_title">
+                              <h2>Select Equipments</small></h2>
+                              <ul class="nav navbar-right panel_toolbox">
+                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                 </li>
+                              </ul>
+                              <div class="clearfix"></div>
+                           </div>
+                           <div class="x_content">
+                              <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                                <thead>
+                                   <tr>
+                                    <th>Equipment Name</th>
+                                      <th>Hospital Name</th>
+                                      <th>Available </th>
+                                      <th>Action </th>
+                                      </tr>
+                                </thead>
+                                <tbody>
+                                  {% for equipment in equipments %}
+                                 <tr class="fir">
+                                      <td>{{ equipment.equipment.name }}</td>
+                                      <td>{{ equipment.hospital.name }}</td>
+                                      {% if equipment.available == 1 %}
+                                        <td>Yes</td>
+                                      {% else %}
+                                        <td>No</td>
+                                      {% endif %}
+                                      <form action="../HospitalBookEquipment/" method="POST">
+                                        <input type="hidden" name="equipmentname" value="{{ equipment.equipment.name }}">
+                                      <td><button class="btn btn-primary">Book</button></td>
+                                    </form>
+                                   </tr>
+                                   {% endfor %}
+                                </tbody>
+                             </table>
+                             <!-- <button id="start-record-btn1" title="Start Recording" onclick="guide()">Start Recognition</button> -->
+                            <div class="fa-hover">
+                              <a>
+                                <i id="start-record-btn1"  onclick="guide()" class="fa  fa-microphone fa-4x"></i>
+                              </a>
+                            </div>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+             </body>
+    {% endblock %}
+
+        <!-- /page content -->
+ {% block js %}
+
+    <!-- Datatables -->
+    <script src="{% static "vendors/datatables.net/js/jquery.dataTables.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.flash.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.html5.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.print.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}" ></script>
+    <script src="{% static "vendors/jszip/dist/jszip.min.js" %}" ></script>
+    <script src="{% static "vendors/pdfmake/build/pdfmake.min.js" %}" ></script>
+    <script src="{% static "vendors/pdfmake/build/vfs_fonts.js" %}" ></script>
+
+          <script>
+            try {
+              var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+              var recognition = new SpeechRecognition();
+              recognition.stop();
+            }
+            catch(e) {
+              console.error(e);
+              // $('.no-browser-support').show();
+              // $('.app').hide();
+            }
+
+            var noteContent = '';
+            var transcript = '';
+
+
+            /*-----------------------------
+                  Voice Recognition
+            ------------------------------*/
+
+            // If false, the recording will stop after a few seconds of silence.
+            // When true, the silence period is longer (about 15 seconds),
+            // allowing us to keep recording even when the user pauses.
+            recognition.continuous = false;
+
+            // This block is called every time the Speech APi captures a line.
+            recognition.onresult = function(event) {
+              console.log("ONRESULTTT");
+              // event is a SpeechRecognitionEvent object.
+              // It holds all the lines we have captured so far.
+              // We only need the current one.
+              var current = event.resultIndex;
+
+              // Get a transcript of what was said.
+              transcript = event.results[current][0].transcript;
+
+              if( transcript.toLowerCase().includes("manage equipments") || transcript.toLowerCase().includes("update equipments") || transcript.toLowerCase().includes("add equipments") ||
+                  transcript.toLowerCase().includes("manage a equipment") || transcript.toLowerCase().includes("update a equipment") || transcript.toLowerCase().includes("add an equipment") ||
+                  transcript.toLowerCase().includes("manage equipment") || transcript.toLowerCase().includes("update equipment") || transcript.toLowerCase().includes("add equipment") ||
+                  transcript.toLowerCase().includes("manager equipments") || transcript.toLowerCase().includes("updater equipments") ||
+                  transcript.toLowerCase().includes("manager equipment") || transcript.toLowerCase().includes("updater equipment")
+                  ){
+                    window.location.href = "../HospitalAddEquipment";
+              }
+                else if (transcript.toLowerCase().includes("view equipment") || transcript.toLowerCase().includes("view equipments") || transcript.toLowerCase().includes("just view"))
+                {
+                    // window.location.href = "../DoctorLanding2";
+
+                }
+                else if(transcript.toLowerCase().includes("checkin") || transcript.toLowerCase().includes("view equipments") || transcript.toLowerCase().includes("just view")){
+                  readOutLoud("Okay if you need me Just wake me up");
+                  recognition.stop();
+                }
+                console.log(transcript);
+              var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+              if(!mobileRepeatBug) {
+                transcript = transcript;
+
+              }
+          };
+
+            recognition.onstart = function() {
+              console.log('Voice recognition activated. Try speaking into the microphone.');
+            }
+
+            recognition.onspeechend = function() {
+              console.log("ENDD");
+              console.log('You were quiet for a while so voice recognition turned itself off.');
+            }
+
+            recognition.onerror = function(event) {
+              if(event.error == 'no-speech') {
+                console.log('No speech was detected. Try again.');
+              };
+            }
+
+            function readOutLoud(message) {
+              var speech = new SpeechSynthesisUtterance();
+
+              // Set the text and voice attributes.
+              speech.text = message;
+              speech.volume = 1;
+              speech.rate = 1;
+              speech.pitch = 1;
+
+              window.speechSynthesis.speak(speech);
+            }
+
+            function guide(){
+              readOutLoud("Hey hey,Healthy here");
+              readOutLoud("Tell me What do you want to do!");
+              readOutLoud("What Do you want to do about your equipments");
+              setTimeout(function(){
+                  console.log("say");
+                  recognition.start();
+                  console.log(transcript);
+                },8500);
+            }
+          </script>
+
+  {% endblock %}

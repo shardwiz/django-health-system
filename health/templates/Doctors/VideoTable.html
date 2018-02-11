@@ -1,0 +1,225 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+
+{% block css %}  <!-- Datatables -->
+    <link href="{% static "vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}"  rel="stylesheet">
+    <style>
+      .fa-hover{
+        /* border: 2px solid #f5f5f5;
+        display: inline-block;
+        position: fixed;
+        padding: 6px 15px;
+        border-radius: 50%;
+        background-color: #Ffe;
+        box-shadow: 0px 1px 1px #476e96;
+        bottom: 60px;
+        right: 35px;
+        z-index: 1000; */
+    border: 1px solid #53779c;
+        display: inline-block;
+        position: fixed;
+        padding: 6px 15px;
+        border-radius: 50%;
+        background-color: #476e96;
+        box-shadow: 0px 1px 1px #2e445a;
+        bottom: 60px;
+        right: 35px;
+        z-index: 1000;
+      }
+      .fa-hover:hover{
+            background-color: #213a54;
+            box-shadow: 0px 1px 1px #53779c;
+      }
+      .fa-microphone{
+        color: white;
+      }
+
+    </style>
+{% endblock %}
+ {% block content %}
+ <body onload="guide()">
+           <div class="">
+                  <div class="page-title">
+                     <div class="title_left">
+                        <h3>Video Call Requests</h3>
+                     </div>
+
+                     <div class="title_right">
+                        <div class="form-group pull-right">
+                           <div class="input-group">
+                              <button class="btn btn-default" type="button" >Set Availablity</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="row">
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                           <div class="x_title">
+                              <h2></small></h2>
+                              <ul class="nav navbar-right panel_toolbox">
+                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                 </li>
+                              </ul>
+                              <div class="clearfix"></div>
+                           </div>
+                           <div class="x_content">
+
+                              <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                              <thead>
+                                 <tr>
+                                   <th>Patient Name</th>
+                                   <th>Join</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                               <tr class="fir">
+                                    <td>Aneri Chetan Shah</td>
+                                    <td><a href="http://appr.tc/r/804442824365" target="_blank"> Join Now </a></td>
+                               </tr>
+                              </tbody>
+                             </table>
+                             <!-- <button id="start-record-btn1" title="Start Recording" onclick="guide()">Start Recognition</button> -->
+                             <div class="fa-hover">
+                               <a>
+                                 <i id="start-record-btn1"  onclick="guide()" class="fa  fa-microphone fa-4x"></i>
+                               </a>
+                             </div>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+             </body>
+    {% endblock %}
+
+        <!-- /page content -->
+ {% block js %}
+
+    <!-- Datatables -->
+    <script src="{% static "vendors/datatables.net/js/jquery.dataTables.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/dataTables.buttons.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.flash.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.html5.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-buttons/js/buttons.print.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-responsive/js/dataTables.responsive.min.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" %}" ></script>
+    <script src="{% static "vendors/datatables.net-scroller/js/dataTables.scroller.min.js" %}" ></script>
+    <script src="{% static "vendors/jszip/dist/jszip.min.js" %}" ></script>
+    <script src="{% static "vendors/pdfmake/build/pdfmake.min.js" %}" ></script>
+    <script src="{% static "vendors/pdfmake/build/vfs_fonts.js" %}" ></script>
+
+    <script>
+      try {
+        var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+        recognition.stop();
+      }
+      catch(e) {
+        console.error(e);
+        // $('.no-browser-support').show();
+        // $('.app').hide();
+      }
+
+      var noteContent = '';
+      var transcript = '';
+
+
+      /*-----------------------------
+            Voice Recognition
+      ------------------------------*/
+
+      // If false, the recording will stop after a few seconds of silence.
+      // When true, the silence period is longer (about 15 seconds),
+      // allowing us to keep recording even when the user pauses.
+      recognition.continuous = false;
+
+      // This block is called every time the Speech APi captures a line.
+      recognition.onresult = function(event) {
+        console.log("ONRESULTTT");
+        // event is a SpeechRecognitionEvent object.
+        // It holds all the lines we have captured so far.
+        // We only need the current one.
+        var current = event.resultIndex;
+
+        // Get a transcript of what was said.
+        transcript = event.results[current][0].transcript;
+
+        if( transcript.toLowerCase().includes("manage records") || transcript.toLowerCase().includes("update records") ||
+            transcript.toLowerCase().includes("manage a record") || transcript.toLowerCase().includes("update a record") ||
+            transcript.toLowerCase().includes("manage record") || transcript.toLowerCase().includes("update record") ||
+            transcript.toLowerCase().includes("manager records") || transcript.toLowerCase().includes("updater records") ||
+                 transcript.toLowerCase().includes("manager record") || transcript.toLowerCase().includes("updater record")
+          )    {
+                  window.location.href = "../DoctorAddRecord";
+              }
+          else if ( transcript.toLowerCase().includes("view record") ||
+                    transcript.toLowerCase().includes("view records") ||
+                    transcript.toLowerCase().includes("just view")
+                  )
+            {
+                window.location.href = "../DoctorLanding2";
+            }
+          else{
+            readOutLoud("Okay if you need me Just wake me up");
+            recognition.stop();
+          }
+          console.log(transcript);
+        var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+        if(!mobileRepeatBug) {
+          transcript = transcript;
+
+        }
+    };
+
+      recognition.onstart = function() {
+        console.log('Voice recognition activated. Try speaking into the microphone.');
+      }
+
+      recognition.onspeechend = function() {
+        console.log("ENDD");
+        console.log('You were quiet for a while so voice recognition turned itself off.');
+      }
+
+      recognition.onerror = function(event) {
+        if(event.error == 'no-speech') {
+          console.log('No speech was detected. Try again.');
+        };
+      }
+
+      function readOutLoud(message) {
+        var speech = new SpeechSynthesisUtterance();
+
+        // Set the text and voice attributes.
+        speech.text = message;
+        speech.volume = 1;
+        speech.rate = 1;
+        speech.pitch = 1;
+
+        window.speechSynthesis.speak(speech);
+      }
+
+      function guide(){
+        readOutLoud("Hey hey,Healthy here");
+        readOutLoud("Tell me What do you want to do!");
+        readOutLoud("Do you want to manage a record or Just View it ");
+        setTimeout(function(){
+            console.log("say");
+            recognition.start();
+            console.log(transcript);
+          },8500);
+      }
+    </script>
+
+  {% endblock %}

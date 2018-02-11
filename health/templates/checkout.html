@@ -1,0 +1,31 @@
+{% extends './Equipment/base.html' %}
+{% load staticfiles %}
+ {% block content %}
+  <body>
+    {% if message is None %}
+    <video width="100%" height="70%" id="preview"></video>
+    {% else %}
+    <h2>{{ message }}</h2>
+    {% endif %}
+    <form  id="doctorid" class="" action="../DoctorCheckOut/" method="post">
+      <input type="hidden" name="doctor" value="">
+    </form>
+    <script src="{% static './instascan.min.js' %}"> </script>
+    <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        $("#doctorid input").val(""+content.split("dr")[1]);
+        $("#doctorid").submit();
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+  </body>
+  {% endblock %}

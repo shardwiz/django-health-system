@@ -1,0 +1,137 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+
+{% block css %}  <!-- Datatables -->
+    <link href="{% static "vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" %}"  rel="stylesheet">
+    <link href="{% static "vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" %}"  rel="stylesheet">
+{% endblock %}
+ {% block content %}
+
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Invoice</h3>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Invoice</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <section class="content invoice">
+                      <!-- title row -->
+                      <div class="row">
+                        <div class="col-xs-12 invoice-header">
+                          <h1>
+                                          <i class="fa fa-medkit"></i> Invoice.
+                                      </h1>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- info row -->
+                      <div class="row invoice-info">
+                        <div class="col-sm-4 invoice-col">
+                          From
+                          <address>
+                                          <strong>HealthCare</strong>
+                                      </address>
+                        </div>
+                        <!-- /.col -->
+                        <!-- <div class="col-sm-4 invoice-col">
+                          To
+                          <address>
+                                          <strong>John Doe</strong>
+                                          <br>795 Freedom Ave, Suite 600
+                                          <br>New York, CA 94107
+                                          <br>Phone: 1 (804) 123-9876
+                                          <br>Email: jon@ironadmin.com
+                                      </address>
+                        </div> -->
+                        <!-- /.col
+                        <div class="col-sm-4 invoice-col">
+                          <b>Invoice #007612</b>
+                          <br>
+                          <br>
+                          <b>Order ID:</b> 4F3S8J
+                          <br>
+                          <b>Payment Due:</b> 2/22/2014
+                          <br>
+                          <b>Account:</b> 968-34567
+                        </div> -->
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+
+                      <!-- Table row -->
+                      <div class="row">
+                        <div class="col-xs-12 table">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Qty</th>
+                                <th>Name</th>
+                                <th>Price (per Item)</th>
+                                <th>Subtotal</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for item in items %}
+                              <tr>
+                              <th>{{ item.quantity }}</th>
+                              <th>{{ item.name }}</th>
+                              <th>{{ item.amount }}</th>
+                              <th>{{ item.subtotal }}</th>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+
+                      <div class="row">
+
+                        <div class="col-xs-12">
+                          <p class="lead"> Final Amount: ₹ 450 </p>
+
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+
+                      <!-- this row will not appear when printing -->
+                      <!-- <div class="row no-print">
+                        <div class="col-xs-12">
+                          <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                          <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+                          <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                        </div>
+                      </div> -->
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+    <script>
+        $("tbody").innerHtml = localStorage.getItem('row');
+    </script>
+{% endblock %}

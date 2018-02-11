@@ -1,0 +1,261 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+<html>
+<head>
+{% block css %}  <!-- iCheck -->
+    <link href="{% static "vendors/iCheck/skins/flat/green.css" %}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{% static "vendors/select2/dist/css/select2.min.css" %}" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{% static "vendors/switchery/dist/switchery.min.css" %}" rel="stylesheet">
+    <!-- starrr -->
+    <link href="{% static "vendors/starrr/dist/starrr.css" %}" rel="stylesheet">
+ <!-- Bootstrap -->
+    <link href="{% static "vendors/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static "vendors/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static "vendors/nprogress/nprogress.css" %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static "build/css/custom.min.css" %}" rel="stylesheet">
+    <style>
+      .fa-hover{
+        /* border: 2px solid #f5f5f5;
+        display: inline-block;
+        position: fixed;
+        padding: 6px 15px;
+        border-radius: 50%;
+        background-color: #Ffe;
+        box-shadow: 0px 1px 1px #476e96;
+        bottom: 60px;
+        right: 35px;
+        z-index: 1000; */
+        border: 1px solid #53779c;
+        display: inline-block;
+        position: fixed;
+        padding: 6px 15px;
+        border-radius: 50%;
+        background-color: #476e96;
+        box-shadow: 0px 1px 1px #2c5075;
+        bottom: 60px;
+        right: 35px;
+        z-index: 1000;
+      }
+      .fa-hover:hover{
+            background-color: #213a54;
+            box-shadow: 0px 1px 1px #53779c;
+      }
+      .fa-microphone{
+        color: white;
+      }
+
+    </style>
+  </head>
+{% endblock %}
+
+ {% block content %}
+ <body onload="initiate()">
+        <!-- page content -->
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Stock Entry</h3>
+              </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Add medicine</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="add_meds" data-parsley-validate class="form-horizontal form-label-left" method="post" action="../PharmacyAddMedicine/">
+
+                      <div class="form-group">
+                        <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="Medicine">Medicine <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="medicinename" name="medicinename" placeholder="Name of the Medicine" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">Quantity <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" id="quantity" name="quantity" required="required" placeholder="Quantity" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Price">Price <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="Price" name="price" placeholder="Price" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success" onclick="UpdateMeds()">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                    <div class="fa-hover">
+                      <a>
+                        <i id="start-record-btn1"  onclick="fillForm()" class="fa  fa-microphone fa-4x"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="{% static "vendors/jquery/dist/jquery.min.js" %}"></script>
+
+        <script>
+        try {
+          var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+          var recognition = new SpeechRecognition();
+          recognition.stop();
+        }
+        catch(e) {
+          console.error(e);
+          // $('.no-browser-support').show();
+          // $('.app').hide();
+        }
+
+var noteContent = '';
+var transcript = '';
+var counter = 0;
+// var formElements = new Array();
+// $("form#add_meds input").each(function(){
+//     formElements.push($(this));
+// });
+var formElements = document.getElementById("add_meds");
+formElements = formElements.getElementsByTagName("input");
+console.log("Length:"+formElements.length);
+
+
+
+        /*-----------------------------
+              Voice Recognition
+        ------------------------------*/
+
+        // If false, the recording will stop after a few seconds of silence.
+        // When true, the silence period is longer (about 15 seconds),
+        // allowing us to keep recording even when the user pauses.
+        recognition.continuous = false;
+
+        // This block is called every time the Speech APi captures a line.
+        recognition.onresult = function(event) {
+          console.log("ONRESULTTT");
+          // event is a SpeechRecognitionEvent object.
+          // It holds all the lines we have captured so far.
+          // We only need the current one.
+          var current = event.resultIndex;
+
+          // Get a transcript of what was said.
+          transcript = event.results[current][0].transcript;
+          console.log(transcript);
+          if(transcript.includes('minus'))
+          {
+            transcript = transcript.replace('minus ',"-");
+          }
+          if(counter > (formElements.length-1) && transcript.toLowerCase().includes('yes'))
+            {
+              document.getElementById("add_meds").submit();
+            }
+          setter(transcript);
+          // Add the current transcript to the contents of our Note.
+          // There is a weird bug on mobile, where everything is repeated twice.
+          // There is no official solution so far so we have to handle an edge case.
+          var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+          if(!mobileRepeatBug) {
+            transcript = transcript;
+            // console.log(noteContent);
+          }
+        };
+
+        recognition.onstart = function() {
+          console.log('Voice recognition activated. Try speaking into the microphone.');
+        }
+
+        recognition.onspeechend = function() {
+          console.log("ENDD");
+          console.log('You were quiet for a while so voice recognition turned itself off.');
+        }
+
+        recognition.onerror = function(event) {
+          if(event.error == 'no-speech') {
+            console.log('No speech was detected. Try again.');
+          };
+        }
+
+        function readOutLoud(message) {
+        	var speech = new SpeechSynthesisUtterance();
+
+          // Set the text and voice attributes.
+        	speech.text = message;
+        	speech.volume = 1;
+        	speech.rate = 1;
+        	speech.pitch = 1;
+
+        	window.speechSynthesis.speak(speech);
+        }
+
+        function fillForm(){
+          readOutLoud("What is the "+formElements[counter].placeholder);
+          setTimeout(function(){
+            console.log("say");
+            recognition.start();
+            console.log(transcript);
+          },2500);
+
+        }
+
+        function initiate(){
+          readOutLoud("Hey, may I help you?");
+          readOutLoud("I will help you fill the form");
+          readOutLoud("Click on the button when you need me");
+          recognition.stop();
+
+        }
+        function setter(transcript){
+          console.log("Setter "+formElements[counter].name+"Counter: "+counter);
+            formElements[counter++].value = transcript;
+            if(counter <= (formElements.length-1))
+            {
+              fillForm();
+            }
+            else{
+              formSubmit();
+            }
+        }
+
+        function formSubmit()
+        {
+          readOutLoud("Do you wish to submit the form");
+          setTimeout(function(){
+            recognition.start();
+          },2500);
+        }
+        </script>
+        <!-- /page content -->
+        <!-- footer content -->
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+</html>

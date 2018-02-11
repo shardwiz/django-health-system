@@ -75,6 +75,7 @@ class Patientrecords(models.Model):
     patient = models.ForeignKey('Patients', models.DO_NOTHING, db_column='patient')
     symptoms = models.CharField(max_length=500)
     diagnosis = models.CharField(max_length=500)
+    medication = models.CharField(max_length=500)
     addedby = models.ForeignKey(Doctors, models.DO_NOTHING, db_column='addedby')
     attatchmentlink = models.CharField(max_length=500)
     createdat = models.CharField(max_length=500)
@@ -92,6 +93,15 @@ class Patients(models.Model):
     address = models.CharField(max_length=500)
     gender = models.CharField(max_length=1)
     contact = models.CharField(max_length=10)
+
+    height = models.CharField(max_length=10)
+    weight = models.CharField(max_length=10)
+    bloodgroup = models.CharField(max_length=10)
+    medicalconditions = models.CharField(max_length=500)
+    alergiesandreactions = models.CharField(max_length=500)
+    ongoingmedications = models.CharField(max_length=500)
+    familyhistory = models.CharField(max_length=500)
+    emergencycontact = models.CharField(max_length=10)
 
     class Meta:
         managed = False

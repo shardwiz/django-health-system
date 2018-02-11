@@ -1,0 +1,98 @@
+{% load staticfiles %}
+
+<head>
+  <title>Health-care for Equipment</title>
+  <link href="{% static "vendors/bootstrap/dist/css/bootstrap.min.css" %}"  rel="stylesheet">
+  <link href="{% static "vendors/font-awesome/css/font-awesome.min.css" %}"  rel="stylesheet">
+  <link href="{% static "vendors/nprogress/nprogress.css" %}"  rel="stylesheet">
+  <link href="{% static "vendors/animate.css/animate.min.css" %}"  rel="stylesheet">
+  <link href="{% static "build/css/custom.min.css" %}"  rel="stylesheet">
+</head>
+  <body class="login">
+    {% if error is not None %}
+      {{ error }}
+    {% endif %}
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form id="login"  method="post" action="../HospitalLogin/">
+              <h1>Login Form</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" name="username" required/>
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" name="password" required />
+              </div>
+              <div>
+                <button class="btn btn-default submit" onclick="Login()">Log in</button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">New to site?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <!-- <div>
+                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div> -->
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form id="signup" method="POST" action="../HospitalRegister/">
+              <h1>Create Account</h1>
+
+              <div>
+                <input type="text" class="form-control" placeholder="Username" name="username" required/>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Name" name="name" required />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" name="password" required />
+              </div>
+
+              <div>
+                <textarea type="text" class="form-control" placeholder="Address" name="address" required ></textarea>
+              </div>
+              <div>
+                <input type="hidden" class="form-control" placeholder="Location" name="location" required  style="display:hidden;" value="18.98,72.89"/>
+              </div>
+              <div>
+                <button class="btn btn-default submit" onclick="Signup">Submit</button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <!-- <div>
+                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div> -->
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
