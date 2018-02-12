@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
@@ -35,8 +34,6 @@ import random
 import operator
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
-=======
->>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 
 # Create your views here.
 
@@ -99,7 +96,6 @@ def GetAllPatientRecords(request):
     patientRecord = Patientrecords.objects.get(patient=Patients.objects.get(aadhaarid=aadhaarid))
     response_array = {}
     response_array['status'] = 1
-<<<<<<< HEAD
     response_array['data'] = []
     for patientRecord in patientRecords:
         patientRecordObj = {}
@@ -556,25 +552,3 @@ def DoctorCheckOut(request):
         return render(request,'./checkout.html',{'message':'Doctor Checked out successfully'})
     else:
         return render(request,'./checkout.html')
-
-
-'''
-Doctor: videocall requests list
-
-Pharmacy: generate invoices
-
-Hospitals: qr code recognizer(plugin if poss)
-
-API: new api to fetch the pharmacy for a particular medicine.
-'''
-=======
-    response_array['data'] = {}
-    response_array['data']['symptoms'] = patientRecord.symptoms
-    response_array['data']['diagnosis'] = patientRecord.diagnosis
-    response_array['data']['addedby'] = patientRecord.addedby
-    response_array['data']['attatchmentlink'] = patientRecord.attatchmentlink
-    response_array['data']['createdat'] = patientRecord.createdat
-    response_array['data']['createdon'] = patientRecord.createdon
-    response_array['data']['id'] = patientRecord.id
-    return HttpResponse(json.dumps(response_array), status=200, content_type="application/json")
->>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

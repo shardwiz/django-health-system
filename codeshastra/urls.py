@@ -9,7 +9,6 @@ urlpatterns = [
     url(r'^PatientRegister/$', views.PatientRegister),
     url(r'^FetchPatientDetails/$', views.FetchPatientDetails),
     url(r'^GetAllPatientRecords/$', views.GetAllPatientRecords),
-<<<<<<< HEAD
     url(r'^CreateNewPatientRecord/$', views.CreateNewPatientRecord),
     url(r'^SearchDoctor/$', views.SearchDoctor),
     url(r'^SearchDoctorBySpeciality/$', views.SearchDoctorBySpeciality),
@@ -35,6 +34,4 @@ urlpatterns = [
     url(r'^DoctorCheckIn/$', views.DoctorCheckIn),
     url(r'^DoctorCheckOut/$', views.DoctorCheckOut),
     url(r'^ReportGeneration/$', views.ReportGeneration),
-=======
->>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 ]
