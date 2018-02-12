@@ -63,3 +63,5 @@
 
 ## Show Stopper
   A physical **Medical Card** for every patient which mentioned the *name*, *d.o.b*, *blood group*, *emergency contact*, and a *QR code* which when scanned by any person would let them download a file of the persons medical history. The main purpose of this card is that whenever a person meets with an accident, this card serves the help to the doctors to decide the medications for a faster improvement in the health.
+  
+  A **Blockchain** for maintaining the records and to avoid the tampering of their personal data. Whenever the person's medical data is tried to be tempered with, it can be checked using blockchain. The node checks for the hash of the own report in other node's ledgers and if found different then it could detect the tampering and restore the data by collecting it back from other ledgers.
