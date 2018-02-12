@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # <pre>
 # This file is in the public domain, so clarified as of
 # 2009-05-17 by Arthur David Olson.
@@ -8,3 +9,15 @@
 
 # Zone	NAME	GMTOFF	RULES	FORMAT
 Zone	Factory	0	- "Local time zone must be set--see zic manual page"
+=======
+# <pre>
+# This file is in the public domain, so clarified as of
+# 2009-05-17 by Arthur David Olson.
+
+# For companies who don't want to put time zone specification in
+# their installation procedures.  When users run date, they'll get the message.
+# Also useful for the "comp.sources" version.
+
+# Zone	NAME	GMTOFF	RULES	FORMAT
+Zone	Factory	0	- "Local time zone must be set--see zic manual page"
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

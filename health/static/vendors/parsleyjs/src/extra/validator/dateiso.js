@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Load this after Parsley for additional comparison validators
 
 window.Parsley.addValidator('dateiso', {
@@ -6,3 +7,13 @@ window.Parsley.addValidator('dateiso', {
   },
   priority: 256
 });
+=======
+// Load this after Parsley for additional comparison validators
+
+window.Parsley.addValidator('dateiso', {
+  validateString: function (value) {
+    return /^(\d{4})\D?(0[1-9]|1[0-2])\D?([12]\d|0[1-9]|3[01])$/.test(value);
+  },
+  priority: 256
+});
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

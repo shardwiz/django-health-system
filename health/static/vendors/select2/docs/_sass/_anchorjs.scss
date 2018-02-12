@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // AnchorJS Styles
 
 .anchorjs-link {
@@ -25,3 +26,32 @@
 .anchorjs-link:focus {
   opacity: 1;
 }
+=======
+// AnchorJS Styles
+
+.anchorjs-link {
+  color: inherit;
+  transition: all .16s linear;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+*:hover > .anchorjs-link {
+  opacity: .5;
+  margin-left: -0.9em !important;
+}
+
+*:hover > .anchorjs-link:hover,
+.anchorjs-link:focus {
+  opacity: 1;
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

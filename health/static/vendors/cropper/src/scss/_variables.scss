@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Variables
 // =========================
 
@@ -17,3 +18,24 @@ $screen-xs: 480px !default; // Extra small screen / phone
 $screen-sm: 768px !default; // Small screen / tablet
 $screen-md: 992px !default; // Medium screen / desktop
 $screen-lg: 1200px !default; // Large screen / wide desktop
+=======
+// Variables
+// =========================
+
+
+// Colors
+// -------------------------
+
+$color-brand: #39f !default;
+$color-black: #000 !default;
+$color-white: #fff !default;
+
+
+// Media queries breakpoints
+// -------------------------
+
+$screen-xs: 480px !default; // Extra small screen / phone
+$screen-sm: 768px !default; // Small screen / tablet
+$screen-md: 992px !default; // Medium screen / desktop
+$screen-lg: 1200px !default; // Large screen / wide desktop
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

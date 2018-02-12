@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 define(function (require) {
 
     var echarts = require('../echarts');
@@ -24,4 +25,32 @@ define(function (require) {
     echarts.registerCoordinateSystem('graphView', {
         create: require('./graph/createView')
     });
+=======
+define(function (require) {
+
+    var echarts = require('../echarts');
+    var zrUtil = require('zrender/core/util');
+
+    require('./graph/GraphSeries');
+    require('./graph/GraphView');
+
+    require('./graph/roamAction');
+
+    echarts.registerProcessor('filter', require('./graph/categoryFilter'));
+
+    echarts.registerVisualCoding('chart', zrUtil.curry(
+        require('../visual/symbol'), 'graph', 'circle', null
+    ));
+    echarts.registerVisualCoding('chart', require('./graph/categoryVisual'));
+    echarts.registerVisualCoding('chart', require('./graph/edgeVisual'));
+
+    echarts.registerLayout(require('./graph/simpleLayout'));
+    echarts.registerLayout(require('./graph/circularLayout'));
+    echarts.registerLayout(require('./graph/forceLayout'));
+
+    // Graph view coordinate system
+    echarts.registerCoordinateSystem('graphView', {
+        create: require('./graph/createView')
+    });
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 ---
 
@@ -14,3 +15,21 @@ $fa-font-path: "../vendor/fonts";
 @import "vendor/font-awesome/core";
 @import "vendor/font-awesome/list";
 @import "vendor/font-awesome/icons";
+=======
+---
+---
+
+/*!
+ *  Font Awesome 4.5.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+
+$fa-font-path: "../vendor/fonts";
+
+@import "vendor/font-awesome/variables";
+@import "vendor/font-awesome/mixins";
+@import "vendor/font-awesome/path";
+@import "vendor/font-awesome/core";
+@import "vendor/font-awesome/list";
+@import "vendor/font-awesome/icons";
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

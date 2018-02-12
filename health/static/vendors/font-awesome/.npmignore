@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.pyc
 *.egg-info
 *.db
@@ -40,3 +41,47 @@ composer.json
 CONTRIBUTING.md
 Gemfile
 Gemfile.lock
+=======
+*.pyc
+*.egg-info
+*.db
+*.db.old
+*.swp
+*.db-journal
+
+.coverage
+.DS_Store
+.installed.cfg
+_gh_pages/*
+
+.idea/*
+.svn/*
+src/website/static/*
+src/website/media/*
+
+bin
+cfcache
+develop-eggs
+dist
+downloads
+eggs
+parts
+tmp
+.sass-cache
+node_modules
+
+src/website/settingslocal.py
+stunnel.log
+
+.ruby-version
+
+# don't need these in the npm package.
+src/
+_config.yml
+bower.json
+component.json
+composer.json
+CONTRIBUTING.md
+Gemfile
+Gemfile.lock
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

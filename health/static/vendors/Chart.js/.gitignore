@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .DS_Store
 
@@ -11,3 +12,18 @@ bower_components/
 coverage/*
 .idea
 nbproject/*
+=======
+
+.DS_Store
+
+node_modules/*
+custom/*
+
+docs/index.md
+
+bower_components/
+
+coverage/*
+.idea
+nbproject/*
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /build
 /test
 /map/tool
@@ -7,3 +8,14 @@ todo
 npm-debug.log
 
 
+=======
+/build
+/test
+/map/tool
+/theme/tool
+/theme/thumb
+todo
+npm-debug.log
+
+
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

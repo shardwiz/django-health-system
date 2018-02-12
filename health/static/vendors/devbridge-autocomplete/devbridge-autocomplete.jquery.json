@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "devbridge-autocomplete",
     "title": "DevBridge Autocomplete",
@@ -25,4 +26,33 @@
     "dependencies": {
         "jquery": ">=1.7"
     }
+=======
+{
+    "name": "devbridge-autocomplete",
+    "title": "DevBridge Autocomplete",
+    "description": "Autocomplete provides suggestions while you type into the text field. ",
+    "keywords": [
+        "ajax",
+        "autocomplete"
+    ],
+    "version": "1.2.24",
+    "author": {
+        "name": "Tomas Kirda",
+        "url": "https://github.com/tkirda"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/devbridge/jQuery-Autocomplete/blob/master/license.txt"
+        }
+    ],
+    "bugs": "https://github.com/devbridge/jQuery-Autocomplete/issues?state=open",
+    "homepage": "https://github.com/devbridge/jQuery-Autocomplete",
+    "docs": "https://github.com/devbridge/jQuery-Autocomplete",
+    "demo": "http://www.devbridge.com/sourcery/components/jquery-autocomplete/",
+    "download": "https://github.com/devbridge/jQuery-Autocomplete/tree/master/dist",
+    "dependencies": {
+        "jquery": ">=1.7"
+    }
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 }

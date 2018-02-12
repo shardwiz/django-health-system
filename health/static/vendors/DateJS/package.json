@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "datejs",
   "version": "1.0.0-rc3",
@@ -50,3 +51,57 @@
   "license": "MIT",
   "readmeFilename": "README.md"
 }
+=======
+{
+  "name": "datejs",
+  "version": "1.0.0-rc3",
+  "description": "DateJS is the most full-featured, internationalized, open-source JavaScript Date Library.",
+  "devDependencies": {
+    "codeclimate-test-reporter": "*",
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.11",
+    "grunt-closurecompiler": "^0.9.9",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-connect": "~0.7.1",
+    "grunt-contrib-jasmine": "^0.8.1",
+    "grunt-shell": "~0.6.1",
+    "grunt-template-jasmine-istanbul": "^0.3.0",
+    "jasmine-node": "~2.0.0-beta4"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/abritinthebay/datejs.git"
+  },
+  "homepage": "https://github.com/abritinthebay/datejs",
+  "bugs": {
+    "url": "http://github.com/abritinthebay/datejs/issues"
+  },
+  "keywords": [
+    "date",
+    "javascript",
+    "js",
+    "mit"
+  ],
+  "engines": {
+    "node": ">=0.8"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": {
+    "name": "Gregory Wild-Smith",
+    "email": "gregory@wild-smith.com"
+  },
+  "maintainers": [
+    {
+      "name": "Gregory Wild-Smith",
+      "email": "gregory@wild-smith.com"
+    }
+  ],
+  "main": "./index.js",
+  "originator": "Geoffrey McGill",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

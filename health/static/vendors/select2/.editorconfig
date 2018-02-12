@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 [*]
 indent_style = space
 end_of_line = lf
 
 [*.js]
 indent_size = 2
+=======
+[*]
+indent_style = space
+end_of_line = lf
+
+[*.js]
+indent_size = 2
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

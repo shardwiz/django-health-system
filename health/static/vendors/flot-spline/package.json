@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "flot-spline",
   "description": "Flot plugin that provides spline interpolation for line graphs",
@@ -11,3 +12,18 @@
   "license" : "SEE LICENSE IN LICENSE",
   "devDependencies": {}
 }
+=======
+{
+  "name": "flot-spline",
+  "description": "Flot plugin that provides spline interpolation for line graphs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/johnpozy/flot-spline",
+  "repository": "https://github.com/johnpozy/flot-spline",
+  "bugs": {
+    "url": "https://github.com/johnpozy/flot-spline/issues"
+  },
+  "main": "js/jquery.flot.spline.js",
+  "license" : "SEE LICENSE IN LICENSE",
+  "devDependencies": {}
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

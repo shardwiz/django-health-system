@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export var YEAR = 0;
 export var MONTH = 1;
 export var DATE = 2;
@@ -7,3 +8,14 @@ export var SECOND = 5;
 export var MILLISECOND = 6;
 export var WEEK = 7;
 export var WEEKDAY = 8;
+=======
+export var YEAR = 0;
+export var MONTH = 1;
+export var DATE = 2;
+export var HOUR = 3;
+export var MINUTE = 4;
+export var SECOND = 5;
+export var MILLISECOND = 6;
+export var WEEK = 7;
+export var WEEKDAY = 8;
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

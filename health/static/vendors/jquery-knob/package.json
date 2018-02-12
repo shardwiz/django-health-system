@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "jquery-knob",
   "version": "1.2.13",
@@ -22,3 +23,29 @@
   },
   "homepage": "https://github.com/aterrien/jQuery-Knob#readme"
 }
+=======
+{
+  "name": "jquery-knob",
+  "version": "1.2.13",
+  "description": "Nice, downward compatible, touchable, jQuery dial",
+  "main": "dist/jquery.knob.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aterrien/jQuery-Knob.git"
+  },
+  "keywords": [
+    "jquery",
+    "knob",
+    "dial"
+  ],
+  "author": "Anthony Terrien",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aterrien/jQuery-Knob/issues"
+  },
+  "homepage": "https://github.com/aterrien/jQuery-Knob#readme"
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

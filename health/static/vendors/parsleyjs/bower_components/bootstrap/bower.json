@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "bootstrap",
   "version": "3.0.3",
@@ -28,3 +29,35 @@
     "jquery": ">= 1.9.0"
   }
 }
+=======
+{
+  "name": "bootstrap",
+  "version": "3.0.3",
+  "main": [
+    "./dist/js/bootstrap.js", 
+    "./dist/css/bootstrap.css", 
+    "./dist/fonts/glyphicons-halflings-regular.eot",
+    "./dist/fonts/glyphicons-halflings-regular.svg",
+    "./dist/fonts/glyphicons-halflings-regular.ttf",
+    "./dist/fonts/glyphicons-halflings-regular.woff"
+  ],
+  "ignore": [
+    "**/.*",
+    "_*",
+    "docs-assets",
+    "examples",
+    "/fonts",
+    "js/tests",
+    "CNAME",
+    "CONTRIBUTING.md",
+    "Gruntfile.js",
+    "browserstack.json",
+    "composer.json",
+    "package.json",
+    "*.html"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0"
+  }
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

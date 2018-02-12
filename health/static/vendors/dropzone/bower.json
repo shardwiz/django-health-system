@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "dropzone",
   "location": "enyo/dropzone",
@@ -14,3 +15,21 @@
     "!dist/**/*"
   ]
 }
+=======
+{
+  "name": "dropzone",
+  "location": "enyo/dropzone",
+  "version": "4.3.0",
+  "description": "Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars.",
+  "homepage": "http://www.dropzonejs.com",
+  "main": [
+    "dist/min/dropzone.min.css",
+    "dist/min/dropzone.min.js"
+  ],
+  "ignore": [
+    "*",
+    "!dist",
+    "!dist/**/*"
+  ]
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

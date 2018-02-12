@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Breadcrumbs
 // --------------------------------------------------
@@ -21,3 +22,28 @@
     color: @breadcrumb-active-color;
   }
 }
+=======
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color: @breadcrumb-bg;
+  border-radius: @border-radius-base;
+  > li {
+    display: inline-block;
+    + li:before {
+      content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: @breadcrumb-color;
+    }
+  }
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

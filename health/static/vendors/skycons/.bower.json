@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "skycons",
   "homepage": "https://github.com/darkskyapp/skycons",
@@ -10,4 +11,18 @@
   "_source": "https://github.com/darkskyapp/skycons.git",
   "_target": "*",
   "_originalSource": "https://github.com/darkskyapp/skycons.git"
+=======
+{
+  "name": "skycons",
+  "homepage": "https://github.com/darkskyapp/skycons",
+  "_release": "7095ecf5f6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7095ecf5f653dbcadbddb0d317b42e65fe091eae"
+  },
+  "_source": "https://github.com/darkskyapp/skycons.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/darkskyapp/skycons.git"
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 }

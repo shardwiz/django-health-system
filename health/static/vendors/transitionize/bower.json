@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "transitionize"
   , "main": "dist/transitionize.js"
@@ -27,3 +28,34 @@
   , "dependencies": {}
   , "devDependencies": {}
 }
+=======
+{
+    "name": "transitionize"
+  , "main": "dist/transitionize.js"
+  , "version": "0.0.3"
+  , "homepage": "https://github.com/abpetkov/transitionize"
+  , "authors": [
+      "Alexander Petkov <abpetkov@gmail.com>"
+    ]
+  , "description": "Create CSS3 transitions dynamically"
+  , "keywords": [
+        "css3"
+      , "transition"
+      , "dynamic"
+  ]
+  , "license": "MIT"
+  , "ignore": [
+        "build"
+      , "components"
+      , "node_modules"
+      , "bower_components"
+      , "component.json"
+      , "index.html"
+      , "Makefile"
+      , "README.md"
+      , ".*"
+    ]
+  , "dependencies": {}
+  , "devDependencies": {}
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

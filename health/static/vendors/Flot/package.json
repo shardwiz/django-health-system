@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"name": "Flot",
 	"version": "0.8.3",
@@ -9,3 +10,16 @@
 		"jshint": "0.9.1"
 	}
 }
+=======
+{
+	"name": "Flot",
+	"version": "0.8.3",
+	"main": "jquery.flot.js",
+	"scripts": {
+		"test": "make test"
+	},
+	"devDependencies": {
+		"jshint": "0.9.1"
+	}
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

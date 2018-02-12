@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Mixins
 // =========================
 
@@ -21,3 +22,28 @@
 @mixin square($size) {
   @include size($size, $size);
 }
+=======
+// Mixins
+// =========================
+
+// Opacity
+// -------------------------
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  filter: alpha(opacity=#{$opacity * 100}); // IE8
+}
+
+
+// Sizing shortcuts
+// -------------------------
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size) {
+  @include size($size, $size);
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

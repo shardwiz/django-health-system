@@ -14757,6 +14757,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	module.exports = function(module) {
 		if(!module.webpackPolyfill) {
 			module.deprecate = function() {};
@@ -14767,6 +14768,18 @@
 		}
 		return module;
 	}
+=======
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 
 
 /***/ },
@@ -68134,14 +68147,22 @@
 /* 106 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
+=======
+	module.exports = function() { throw new Error("define cannot be used indirect"); };
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 
 
 /***/ },
 /* 107 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
+=======
+	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 

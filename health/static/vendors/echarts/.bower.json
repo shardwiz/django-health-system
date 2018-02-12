@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "echarts",
   "homepage": "https://github.com/ecomfe/echarts",
@@ -11,4 +12,19 @@
   "_source": "https://github.com/ecomfe/echarts.git",
   "_target": "^3.1.7",
   "_originalSource": "echarts"
+=======
+{
+  "name": "echarts",
+  "homepage": "https://github.com/ecomfe/echarts",
+  "version": "3.1.10",
+  "_release": "3.1.10",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.1.10",
+    "commit": "5b08696ef103314c827907907432b15146940c45"
+  },
+  "_source": "https://github.com/ecomfe/echarts.git",
+  "_target": "^3.1.7",
+  "_originalSource": "echarts"
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 }

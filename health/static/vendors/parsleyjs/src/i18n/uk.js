@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Validation errors messages for Parsley
 import Parsley from '../parsley';
 
@@ -27,3 +28,34 @@ Parsley.addMessages('uk', {
 });
 
 Parsley.setLocale('uk');
+=======
+// Validation errors messages for Parsley
+import Parsley from '../parsley';
+
+Parsley.addMessages('uk', {
+  defaultMessage: "Некоректне значення.",
+  type: {
+    email:        "Введіть адресу електронної пошти.",
+    url:          "Введіть URL-адресу.",
+    number:       "Введіть число.",
+    integer:      "Введіть ціле число.",
+    digits:       "Введіть тільки цифри.",
+    alphanum:     "Введіть буквено-цифрове значення."
+  },
+  notblank:       "Це поле повинно бути заповнено.",
+  required:       "Обов'язкове поле",
+  pattern:        "Це значення некоректно.",
+  min:            "Це значення повинно бути не менше ніж %s.",
+  max:            "Це значення повинно бути не більше ніж %s.",
+  range:          "Це значення повинно бути від %s до %s.",
+  minlength:      "Це значення повинно містити не менше ніж %s символів.",
+  maxlength:      "Це значення повинно містити не більше ніж %s символів.",
+  length:         "Це значення повинно містити від %s до %s символів.",
+  mincheck:       "Виберіть не менше %s значень.",
+  maxcheck:       "Виберіть не більше %s значень.",
+  check:          "Виберіть від %s до %s значень.",
+  equalto:        "Це значення повинно збігатися."
+});
+
+Parsley.setLocale('uk');
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

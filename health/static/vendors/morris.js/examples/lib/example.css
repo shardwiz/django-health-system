@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   width: 800px;
   margin: 0 auto;
@@ -11,3 +12,18 @@ pre {
   height: 250px;
   overflow: auto;
 }
+=======
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+#graph {
+  width: 800px;
+  height: 250px;
+  margin: 20px auto 0 auto;
+}
+pre {
+  height: 250px;
+  overflow: auto;
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

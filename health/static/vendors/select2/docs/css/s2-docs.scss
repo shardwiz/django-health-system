@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 ---
 
@@ -21,4 +22,29 @@
 @import "prettify";
 @import "syntax-highlighting";
 @import "typography";
+=======
+---
+---
+
+@import "vendor/bootstrap/variables";
+
+@import "result-repository";
+@import "sidenav";
+@import "hamburger";
+@import "code";
+@import "featurette";
+@import "layout";
+@import "nav";
+@import "footer";
+@import "alert";
+@import "home";
+@import "examples";
+@import "social";
+@import "buttons";
+@import "anchorjs";
+@import "jumbotron";
+@import "prettify";
+@import "syntax-highlighting";
+@import "typography";
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
 @import "dl-panels";

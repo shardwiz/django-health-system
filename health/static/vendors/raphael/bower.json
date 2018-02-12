@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "raphael",
   "main": "raphael.min.js",
@@ -29,3 +30,36 @@
     "reference.js"
   ]
 }
+=======
+{
+  "name": "raphael",
+  "main": "raphael.min.js",
+  "description": "JavaScript Vector Library",
+  "dependencies": {
+    "eve": "https://github.com/adobe-webplatform/eve.git#eef80ed"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.17"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": ["svg", "vml", "javascript"],
+  "authors": [
+    "Dmitry Baranovskiy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.html",
+    "*.json",
+    "*.markdown",
+    "*.md",
+    "copy.js",
+    "Gruntfile.js",
+    "reference.js"
+  ]
+}
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb

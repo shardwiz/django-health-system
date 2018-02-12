@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 root = true
 
 [*]
@@ -36,3 +37,43 @@ indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
+=======
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[**.js]
+indent_style = space
+indent_size = 4
+
+[**.css]
+indent_style = space
+indent_size = 4
+
+[**.less]
+indent_style = space
+indent_size = 4
+
+[**.styl]
+indent_style = space
+indent_size = 4
+
+[**.html]
+indent_style = space
+indent_size = 4
+
+[**.tpl]
+indent_style = space
+indent_size = 4
+
+[**.json]
+indent_style = space
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+>>>>>>> 5f91f3411245b1d3d2d998dbedeb8154265a24fb
