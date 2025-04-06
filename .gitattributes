@@ -1,12 +1,14 @@
-# ✅ Prioritize Python (Django backend)
+# Prioritize Python files (Django backend)
 *.py linguist-detectable=true
 
-# ✅ Prioritize Java (Android app)
+# Prioritize Java files (Android app)
 *.java linguist-detectable=true
+
+# Also include Android XML resources
 *.xml linguist-detectable=true
 
-# ❌ Deprioritize JavaScript (frontend or minor use)
+# Deprioritize HTML and template files
+*.html linguist-detectable=false
+*.htm linguist-detectable=false
+*.css linguist-detectable=false
 *.js linguist-detectable=false
-*.jsx linguist-detectable=false
-*.ts linguist-detectable=false
-*.tsx linguist-detectable=false
